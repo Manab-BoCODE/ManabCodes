@@ -1,0 +1,83 @@
+import random, time , os
+   
+def health():
+  rolldice6 = random.randint(1,6)
+  rolldice12 = random.randint(1,12)
+  health = (rolldice6 * rolldice12)/2 + 10
+  print("Health: ", health)
+  return health
+
+def strength():
+  rolldice6 = random.randint(1,6)
+  rolldice12 = random.randint(1,12)
+  strength = (rolldice6 * rolldice12)/2 + 12
+  print("Strength: ", strength)
+  return strength
+
+print("Battle Time")
+ 
+  
+Char1 = input("Name your Character:\n").lower()
+print(Char1, "the Almighty")
+CharType1 = input("How would you describe your character(Human.Elf,Wizard,Orc):\n").lower()
+
+print(Char1, "the", CharType1)
+char1health = health()
+char1strength = strength()
+print()
+print("Who are they battling?")
+Char2 = input("Name your Character:\n").lower()
+print(Char2, "the Almighty")
+CharType2 = input("How would you describe your character(Human.Elf,Wizard,Orc):\n").lower()
+
+print(Char2, "the", CharType2)
+char2health = health()
+char2strength = strength()
+print()
+
+round = 1
+winner = None
+
+while True:
+  time.sleep(1)
+  os.system("clear")
+  print("The battle begins!") 
+
+  diff = abs(char1strength - char2strength) + 1
+  if char1strength > char2strength:
+    c2health = char2health - diff
+    if round==1:
+      print(Char1, "wins the first blow")
+    else:
+      print(Char1, "wins the" ,round, "round")
+  elif char2strength > char1strength:
+    c1health = char1health - diff
+    if round==1:
+      print(Char2, "wins the first blow")
+    else:
+      print(Char2, "wins the" ,round, "round")
+  else:
+    print("Its a DRAW!!!!!!!!!", "in round", round) 
+  print()  
+  print(Char1)
+  print("Health: ", c1health)
+  print()  
+  print(Char2)
+  print("Health: ", c2health)
+
+  if c1health <= 0 : 
+   print(Char1, "is ded")
+   winner = Char2
+   break
+  elif c2health <= 0:  
+   print(Char2, "is ded")  
+   winner = Char1
+   break
+  else:
+   print("The GAME must go on!!")
+   round += 1
+
+time.sleep(5)
+os.system("clear")
+print("Battle Time")
+print(winner , "has won in", round, "rounds")
